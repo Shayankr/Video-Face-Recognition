@@ -4,11 +4,11 @@ VideoFaceRecog is a Python-based deep learning project that focuses on face reco
 
 ## Features
 
-- Face detection and tracking: The project utilizes advanced computer vision techniques to detect and track faces in videos.
-- Face recognition: It employs deep learning models to recognize and match faces against a database of known identities.
-- Real-time processing: The system is optimized for real-time video processing, ensuring efficient and responsive face recognition.
-- Configurable parameters: Various parameters can be adjusted, such as confidence thresholds, frame rate, and face recognition models.
-- Easy-to-use API: Provides a simple API for integrating the face recognition functionality into your own applications.
+- <b>Face detection and tracking:</b> The project utilizes advanced computer vision techniques to detect and track faces in videos.
+- <b>Face recognition:</b> It employs deep learning models to recognize and match faces against a database of known identities.
+- <b>Real-time processing:</b> The system is optimized for real-time video processing, ensuring efficient and responsive face recognition.
+- <b>Configurable parameters:</b> Various parameters can be adjusted, such as confidence thresholds, frame rate, and face recognition models.
+- <b>Easy-to-use API:</b> Provides a simple API for integrating the face recognition functionality into your own applications.
 
 ## Installation
 
@@ -58,14 +58,14 @@ This project is licensed under the MIT License.
 
 The development of VideoFaceRecog is made possible by the following open-source libraries and resources:
 
-- OpenCV: [https://opencv.org/](https://opencv.org/)
-- PyTorch: [https://pytorch.org/](https://pytorch.org/)
-- dlib: [http://dlib.net/](http://dlib.net/)
+- OpenCV: <a href="https://opencv.org/" target="_blank">https://opencv.org/</a>
+- PyTorch: <a href="https://pytorch.org/" target="_blank">https://pytorch.org/</a>
+- dlib: <a href="http://dlib.net/" target="_blank">http://dlib.net//</a>
 - Pre-trained face recognition models (e.g., ResNet, ArcFace): [!pip install arcface](https://pypi.org/project/arcface/)
 
 Please refer to the documentation and licenses of these libraries for more information.
 
 ## Contact
 
-For any questions or inquiries, please contact shayankumar765@gmail.com, [linkedin](https://www.linkedin.com/in/shayan-kumar-187164a6/)
+For any questions or inquiries, please contact shayankumar765@gmail.com, [text-me-on-linkedin](https://www.linkedin.com/in/shayan-kumar-187164a6/).
 
