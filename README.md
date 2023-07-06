@@ -15,18 +15,18 @@ VideoFaceRecog is a Python-based deep learning project that focuses on face reco
 1. Clone the repository:
 
 ```shell
-git clone https://github.com/your-username/VideoFaceRecog.git
+git clone https://github.com/your-username/VideoFaceRecog.git```
 
 2. Install the required dependencies:
-'''pip install -r requirements.txt'''
+```pip install -r requirements.txt```
 
 ## Usage
 
 1. Prepare your video files and ensure they are accessible from the project directory.
 2. Modify the configuration parameters in the <b>config.py</b> file to suit your requirements.
 3. Run the main script to start the face recognition system:
-'''shell
-python main.py'''
+```shell
+python main.py```
 
 ## Deployment on AWS Cloud
 
