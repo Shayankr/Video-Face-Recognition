@@ -14,8 +14,9 @@ VideoFaceRecog is a Python-based deep learning project that focuses on face reco
 
 1. Clone the repository:
 
-```shell
-git clone https://github.com/your-username/VideoFaceRecog.git```
+```
+git clone https://github.com/your-username/VideoFaceRecog.git
+```
 
 2. Install the required dependencies:
 ```pip install -r requirements.txt```
