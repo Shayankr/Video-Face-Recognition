@@ -1,0 +1,13 @@
+Flask==2.0.1
+pandas
+numpy
+matplotlib
+seaborn
+pillow
+opencv-python
+scikit-learn
+torch==2.0.1
+torchvision==0.15.2
+torchaudio==2.0.2
+retinaface-pytorch==0.0.7
+-e .
