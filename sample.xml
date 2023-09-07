@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book>
+        <title>Python Programming</title>
+        <author>John Smith</author>
+        <published_year>2022</published_year>
+    </book>
+    <book>
+        <title>Web Development</title>
+        <author>Jane Doe</author>
+        <published_year>2020</published_year>
+    </book>
+    <book>
+        <title>Data Science Basics</title>
+        <author>David Brown</author>
+        <published_year>2021</published_year>
+    </book>
+    <book>
+        <title>Java Programming</title>
+        <author>Michael Johnson</author>
+        <published_year>2019</published_year>
+    </book>
+    <book>
+        <title>Artificial Intelligence</title>
+        <author>Lisa Adams</author>
+        <published_year>2023</published_year>
+    </book>
+    <book>
+        <title>Database Management</title>
+        <author>Robert Clark</author>
+        <published_year>2020</published_year>
+    </book>
+    <book>
+        <title>Network Security</title>
+        <author>Sarah Wilson</author>
+        <published_year>2022</published_year>
+    </book>
+    <book>
+        <title>Mobile App Development</title>
+        <author>Kevin Lee</author>
+        <published_year>2021</published_year>
+    </book>
+</library>
