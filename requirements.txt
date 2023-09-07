@@ -3,6 +3,7 @@ pandas
 numpy
 matplotlib
 seaborn
+db-sqlite3==0.0.1
 pillow==9.4.0
 opencv-python
 opencv-python-headless==4.7.0.72
