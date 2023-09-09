@@ -23,3 +23,8 @@ setup(
     install_requires = get_requirements("requirements.txt"),
     packages=find_packages()
 )
+
+
+# RUN:
+# python setup.py ldist_wheel
+# pip install /path_of_project/dist/wheel_name
