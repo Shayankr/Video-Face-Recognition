@@ -80,7 +80,7 @@ class DataIngestion:
             cap = cv2.VideoCapture(0)
 
             # Check if camera opened successfully
-            if (cap.isOpened()== False): 
+            if not cap.isOpened():
                 logging.info("Error in opening video stream or file.")
 
             # see the default fps of video:
@@ -133,6 +133,10 @@ class DataIngestion:
                     # )
                     # self.insert_acquisition_data(cursor, table_name, acquisition_info)
 
+                    break
+
+                # Press 'q' to exit the loop
+                if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
 
                 # Save the frame to the current acquisition folder
