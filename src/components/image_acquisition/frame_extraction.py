@@ -33,7 +33,7 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.ingestion_config.frame_folder), exist_ok=True)
 
             # Set the desired FPS (e.g., 30 FPS)
-            desired_fps = self.ingestion_config.fps
+            desired_fps = FrameExtraction.fps
 
             # Create a 'cap' object: // to select video or webcam:
             if (self.ingestion_config.capture_mode == "video"):
@@ -48,21 +48,14 @@ class DataIngestion:
 
             # see the default fps of video:
             fps = cap.get(cv2.CAP_PROP_FPS)
-            logging.info(f'Video is extracting frames at: {fps} fps')
+            logging.info(f'Video is extracting the frames at fps: {fps}')
 
             # Changing fps rate
             cap.set(cv2.CAP_PROP_FPS, desired_fps)
-            logging.info(f' Now, Video is extracting the frames at: {cap.get(cv2.CAP_PROP_FPS)} fps')
+            logging.info(f' Now, Video is extracting the frames at fps: {cap.get(cv2.CAP_PROP_FPS)}')
                 
             # Initialize variables
             frame_count = 0
-
-            # set fps above does not work -- I want to store frame at 6 fps not at 30 fps:
-
-            # Calculate the delay in milliseconds required to achieve the desired FPS
-            delay = int(1000 / desired_fps)
-
-            take_frame = 0
 
             while True:
                 # Read a frame from the video
@@ -73,21 +66,13 @@ class DataIngestion:
                     logging.info("Ingestion of Video Data is Ended!-- No More Frames.")
                     break
                 
-                # Check if it's time to capture a frame based on desired FPS
-                if take_frame >= (fps / desired_fps):
-                    # Save the frame to the current acquisition folder
-                    # frame_filename = f"frame_{frame_count:04d}.jpg"
-                    frame_filename = f"frame_{frame_count}.jpg"
-                    frame_path = os.path.join(self.ingestion_config.frame_folder, frame_filename)
-                    cv2.imwrite(frame_path, frame)
+                # Save the frame to the current acquisition folder
+                # frame_filename = f"frame_{frame_count:04d}.jpg"
+                frame_filename = f"frame_{frame_count}.jpg"
+                frame_path = os.path.join(self.ingestion_config.frame_folder, frame_filename)
+                cv2.imwrite(frame_path, frame)
 
-                    frame_count += 1
-
-                    # Reset the frame counter
-                    take_frame = 0
-                    
-                # Increment the frame counter
-                take_frame += 1
+                frame_count += 1
 
 
             # Release the video capture object

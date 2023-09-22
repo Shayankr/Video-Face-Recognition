@@ -17,11 +17,11 @@ import time
 
 # Import the configuration class from config.py
 # from config_ import DetectionConfig, device
-from config.configuration import DetectionConfig, device, TrackingConfig
+from config.configuration import DetectionConfig, device
 
 
 @dataclass
-class FaceDetectionConfig(DetectionConfig, TrackingConfig):
+class FaceDetectionConfig(DetectionConfig):
     pass
 
 
@@ -33,7 +33,6 @@ class FaceDetection:
             device=device   # Use the device variable from config.py
         )
         self.model.eval()
-        self.detection_config = FaceDetectionConfig()
 
     def detect_annotations(self, image_path):
         try:
@@ -46,9 +45,9 @@ class FaceDetection:
 
             # Perform face detection
             annotation = self.model.predict_jsons(image)
-            logging.info(f"annotation detected for image_path: {image_path}")
+            logging.info(f"annottaion detected for image_path: {image_path}")
 
-            return image, annotation
+            return annotation
         
         except Exception as e:
             logging.info(f"Error in Processing Face Detection and Saving in JSON Format Step for: {image_path}!")
@@ -110,78 +109,27 @@ class FaceDetection:
             else:
                 logging.info(f"JSON File: {final_json_path} does not exist!")
 
-            # Capture the video or webcam for draw the rectangles on each detected face using bbox -- shows face tracking
-            # cap = cv2.VideoCapture(self.detection_config.video_data_path)
+            ## Run this loop until processing all frames inside frame_folder -- since no. of frames in frame_folder is variable.
+            while(len(os.listdir(frame_folder)) > n_frames):
+                logging.info(f"BBox extraction for frame number: {n_frames}")
 
-            # Resolution of frame:
-            resolution = self.detection_config.frame_resolution # (width, height)
-            fps_rate_save = self.detection_config.fps_output
+                # Get a list of image files in the folder
+                frame_files = os.listdir(frame_folder)
 
-            # Initialize the VideoWriter
-            out = cv2.VideoWriter(
-                os.path.join(self.detection_config.video_save_path, "output.avi"),
-                cv2.VideoWriter_fourcc(*'DIVX'), fps_rate_save, resolution
-            )
+                # Sort the list of files based on their names (assuming filenames follow the frame_xxxx.jpg convention)
+                frame_files.sort()
 
-            logging.info(f"An object [{out}] is created for saving video with bounding box:")
-
-            # Variable to keep track of whether we have processed all frames
-            all_frames_processed = False
-
-            while not all_frames_processed:
-                # Check if the frame for the current frame number exists
-                framename = f"frame_{n_frames}.jpg"
-                frame_path = os.path.join(frame_folder, framename)
-
+                # Iterate through all images in the folder
+                framename = frame_files[n_frames]
                 n_frames += 1
 
-                if os.path.exists(frame_path):
-                    # Perform face detection
-                    logging.info(f"BBox extraction for frame number: {n_frames}")
-                    img, annot = self.detect_annotations(frame_path)
+                if framename.endswith(".jpg") or framename.endswith(".jpeg") or framename.endswith(".png"):
+                    frame_path = os.path.join(frame_folder, framename)
+                    annot = self.detect_annotations(frame_path)
+                    # Here, I want to save each annot with frame number as another key value pair like "frame_no":n_frames-1 and "time":datatime.dateime.now()
 
-                    try:
-                        logging.info(f"Tracking face started for frame - {n_frames}")
-                        # Draw rectangles on each face based on bbox annot
-
-                        # n_detected_faces = len(annot)
-                        # for face_id in range(n_detected_faces):
-                        #     left, bottom, right, top = annot[face_id]["bbox"]
-                        #     img_with_rectangles = cv2.rectangle(img, (left, bottom), (right, top), self.detection_config.color[face_id % len(self.detection_config.color)], 4)
-
-                        for face_id, bbox in enumerate(annot):
-                            if len(bbox.get("bbox", [])) == 4:  # Check if "bbox" has 4 values
-                                left, bottom, right, top = bbox["bbox"]
-                                img_with_rectangles = cv2.rectangle(
-                                    img, (left, bottom), (right, top),
-                                    self.detection_config.color[face_id % len(self.detection_config.color)], 3
-                                )
-                            else:
-                                logging.info(f"No valid bounding box for face {face_id}, skipping.")
-
-
-                        # Update the VideoWriter
-                        out.write(img_with_rectangles)
-                        logging.info(f"Faces are tracked for frame - {n_frames}")
-
-                        # Here, I want to save each annot with frame number as another key value pair like "frame_no":n_frames-1 and "time":datatime.dateime.now()
-
-                        # Save annotation with frame number and timestamp to the final JSON file
-                        self.save_annotation_to_final_json(final_json_path, annot, n_frames)
-
-
-                    except Exception as e:
-                        logging.info(f"Error in face tracking for frame - {n_frames}")
-                        raise CustomException(e, sys)
-
-                else:
-                    # If the frame for the current frame number doesn't exist, exit the loop
-                    all_frames_processed = True
-
-            # Release the VideoWriter object
-            out.release()
-            logging.info("All frames processed successfully.")
-
+                    # Save annotation with frame number and timestamp to the final JSON file
+                    self.save_annotation_to_final_json(final_json_path, annot, n_frames)
 
         except Exception as e:
             logging.info(f"Error in Processing Image folder for finding BBox Step for: {frame_folder}!")

@@ -8,8 +8,8 @@ import os
 def main():
 
     # Create an instance of the Data Ingestion class
-    # data_ingestion_instance = DataIngestion()
-    # frame_folder_path = data_ingestion_instance.initiate_data_ingestion()
+    data_ingestion_instance = DataIngestion()
+    frame_folder_path = data_ingestion_instance.initiate_data_ingestion()
 
 
 
