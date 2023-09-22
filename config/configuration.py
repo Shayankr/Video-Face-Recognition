@@ -1,8 +1,10 @@
 import os
+import torch
 
 
 # Global device variable
-device = "cpu"  # Change this to "gpu" when needed
+#device = "cpu"  # Change this to "gpu" when needed
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class DetectionConfig:
@@ -24,5 +26,5 @@ class FrameExtraction:
     base_dir = "artifacts"
     frame_folder = os.path.join("artifacts", "frames")
     capture_mode = "video"  # or "webcam"
-    video_data_path = os.path.join(base_dir, "video","Tere_Vaaste_face_track.mp4")
+    video_data_path = os.path.join("artifacts", "video","Deewangi_Deewangi.mp4")
 #
